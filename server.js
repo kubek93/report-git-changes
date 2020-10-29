@@ -48,8 +48,6 @@ const questions = require('./utils/questions.js');
     checkIfDirectoryExistsAndCreateIfNeeded(gitReportFolderPath);
     checkIfDirectoryExistsAndCreateIfNeeded(gitReportChangesPath);
 
-    const savedFiles = [];
-
     listOfProjects.forEach(async (file) => {
         const fullFilePath = `${projectFolderPath}/${file}`;
 
@@ -58,8 +56,6 @@ const questions = require('./utils/questions.js');
                 if (isDirectory) {
                     runCommandOnPath(consoleCommand, fullFilePath)
                         .then((resultOfCommand) => {
-                            savedFiles.push(`${file}.txt`);
-
                             saveFileWithContent(
                                 `${gitReportChangesPath}/${file}.txt`,
                                 resultOfCommand
