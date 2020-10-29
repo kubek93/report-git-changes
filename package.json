@@ -1,0 +1,32 @@
+{
+  "name": "report-git-changes",
+  "version": "0.1.0",
+  "description": "Search and save all changes from repositories for a specific month",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubek93/report-git-changes.git"
+  },
+  "keywords": [
+    "git",
+    "log",
+    "changes",
+    "report",
+    "creative",
+    "hours"
+  ],
+  "author": "kubek93",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kubek93/report-git-changes/issues"
+  },
+  "homepage": "https://github.com/kubek93/report-git-changes#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "prompts": "^2.4.0"
+  }
+}
