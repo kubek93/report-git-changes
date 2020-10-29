@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require('dotenv').config();
 const prompts = require('prompts');
 const fs = require('fs');
 const {
@@ -26,19 +25,30 @@ const questions = require('./utils/questions.js');
     const afterDate = getFirstDayOfMonth(dateOfReport);
     const beforeDate = getLastDayOfMonth(dateOfReport);
     const gitReportFolderName = returnMonthFolderName(dateOfReport);
-    const gitReportChangesPath = gitReportFolderPath + `/${gitReportFolderName}`;
+    const gitReportChangesPath =
+        gitReportFolderPath + `/${gitReportFolderName}`;
     const consoleCommand = `git log  --reverse --all --after=${afterDate} --before=${beforeDate} --author="${gitAuthorName}" -p`;
+
+    if (!fs.existsSync(projectFolderPath)) {
+        console.error('Passed project folder path not exists.');
+
+        return;
+    }
 
     const listOfProjects = fs.readdirSync(projectFolderPath);
 
     if (listOfProjects.length === 0) {
-        console.log('There are no projects - verify env PROJECT_FOLDER_PATH');
+        console.error(
+            'There are no any projects inside of the folder. Try to use different project path.'
+        );
 
         return;
     }
 
     checkIfDirectoryExistsAndCreateIfNeeded(gitReportFolderPath);
     checkIfDirectoryExistsAndCreateIfNeeded(gitReportChangesPath);
+
+    const savedFiles = [];
 
     listOfProjects.forEach(async (file) => {
         const fullFilePath = `${projectFolderPath}/${file}`;
@@ -48,18 +58,26 @@ const questions = require('./utils/questions.js');
                 if (isDirectory) {
                     runCommandOnPath(consoleCommand, fullFilePath)
                         .then((resultOfCommand) => {
+                            savedFiles.push(`${file}.txt`);
+
                             saveFileWithContent(
                                 `${gitReportChangesPath}/${file}.txt`,
                                 resultOfCommand
                             );
                         })
                         .catch((err) => {
-                            console.error('runCommandOnPath error');
+                            // console.error('runCommandOnPath error');
+                            return;
                         });
                 }
             })
             .catch((err) => {
-                console.error('isDirectoryChecker error', err);
+                // console.error('isDirectoryChecker error');
+                return;
             });
     });
+
+    console.log(
+        `Program saved: ${savedFiles.length} files: ${savedFiles.join(', ')}`
+    );
 })();

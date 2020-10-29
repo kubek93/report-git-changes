@@ -50,7 +50,7 @@ function checkIfDirectoryExistsAndCreateIfNeeded(folderPath) {
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath);
 
-        console.log(`We created folder for you: ${folderPath}`);
+        console.log(`Folder: ${folderPath} has been created.`);
     }
 
     return true;
@@ -94,7 +94,7 @@ function saveFileWithContent(filePath, fileContent = '') {
             if (err) {
                 reject(err);
             } else {
-                console.log('The file was saved!');
+                console.log(`File: ${filePath} has been saved!`);
                 resolve(true);
             }
         });

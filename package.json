@@ -1,10 +1,10 @@
 {
   "name": "report-git-changes",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Search and save all changes from repositories for a specific month",
   "main": "server.js",
   "bin": {
-    "generate-git-report": "./server.js"
+    "report-git-changes": "./server.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,7 +29,6 @@
   },
   "homepage": "https://github.com/kubek93/report-git-changes#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
     "prompts": "^2.4.0"
   }
 }
