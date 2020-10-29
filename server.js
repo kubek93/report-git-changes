@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 require('dotenv').config();
 const prompts = require('prompts');
 const fs = require('fs');

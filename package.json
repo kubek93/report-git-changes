@@ -1,8 +1,11 @@
 {
   "name": "report-git-changes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Search and save all changes from repositories for a specific month",
   "main": "server.js",
+  "bin": {
+    "generate-git-report": "./server.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
