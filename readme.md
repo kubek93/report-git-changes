@@ -12,6 +12,10 @@ $ git log  --reverse --all --after=first-day-of-month --before=last-day-of-month
 
 and iterate through all projects from passed folder.
 
+After few questions you will be able to generate files with you changes:
+
+![Example of project](https://raw.githubusercontent.com/kubek93/report-git-changes/assets/images/example.png)
+
 ## Installation
 
 ```bash
