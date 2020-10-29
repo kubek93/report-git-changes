@@ -76,8 +76,4 @@ const questions = require('./utils/questions.js');
                 return;
             });
     });
-
-    console.log(
-        `Program saved: ${savedFiles.length} files: ${savedFiles.join(', ')}`
-    );
 })();
