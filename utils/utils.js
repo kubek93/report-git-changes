@@ -1,27 +1,17 @@
 const fs = require('fs');
+const moment = require('moment');
 const { exec } = require('child_process');
 
 function getFirstDayOfMonth(date) {
-    const currDate = new Date(date);
-    const firstDayOfMonth = new Date(
-        currDate.getFullYear(),
-        currDate.getMonth(),
-        2,
-        0
-    );
+    const currDate = moment(date).hours(0).minutes(0).seconds(0);
 
-    return `${firstDayOfMonth.getFullYear()}-${firstDayOfMonth.getMonth()}-${firstDayOfMonth.getDate()}`;
+    return currDate.startOf('month').format('YYYY-MM-DD');
 }
 
 function getLastDayOfMonth(date) {
-    const currDate = new Date(date);
-    const lastDayOfMonth = new Date(
-        currDate.getFullYear(),
-        currDate.getMonth() + 1,
-        1
-    );
+    const currDate = moment(date).hours(0).minutes(0).seconds(0);
 
-    return `${lastDayOfMonth.getFullYear()}-${lastDayOfMonth.getMonth()}-${lastDayOfMonth.getDate()}`;
+    return currDate.endOf('month').format('YYYY-MM-DD');
 }
 
 function returnMonthFolderName(date) {

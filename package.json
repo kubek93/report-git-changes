@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/kubek93/report-git-changes#readme",
   "dependencies": {
+    "moment": "^2.29.1",
     "prompts": "^2.4.0"
   }
 }

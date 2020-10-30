@@ -28,6 +28,7 @@ const questions = require('./utils/questions.js');
     const gitReportChangesPath =
         gitReportFolderPath + `/${gitReportFolderName}`;
     const consoleCommand = `git log  --reverse --all --after=${afterDate} --before=${beforeDate} --author="${gitAuthorName}" -p`;
+    console.log('RUN: ', consoleCommand);
 
     if (!fs.existsSync(projectFolderPath)) {
         console.error('Passed project folder path not exists.');
