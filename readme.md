@@ -45,5 +45,5 @@ $ git clone https://github.com/kubek93/report-git-changes.git
 and execute command in your command line:
 
 ```bash
-$ report-git changes
+$ report-git-changes
 ```
