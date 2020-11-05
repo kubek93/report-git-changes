@@ -16,7 +16,15 @@ After few questions you will be able to generate files with you changes:
 
 ![Example of project](https://raw.githubusercontent.com/kubek93/report-git-changes/assets/images/example.png)
 
-## Installation
+## Usage
+
+You can use this script without installing code on you local machine which is recommended. For do that use command:
+
+```bash
+$ npx report-git-changes
+```
+
+If you decide to store packages locally, first of all install it as a global npm packages using:
 
 ```bash
 $ npm i -g report-git-changes
@@ -28,13 +36,4 @@ Or clone repository locally:
 $ git clone https://github.com/kubek93/report-git-changes.git
 ```
 
-## Using
-
-You should be able to run command: `report-git-changes` in your command line.
-
-Or just go to cloned repo and run manually:
-
-```bash
-$ cd report-git-changes
-$ node server.js
-```
+and execute: `$ report-git changes` in your command line.
