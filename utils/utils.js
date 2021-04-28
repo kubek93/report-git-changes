@@ -60,7 +60,8 @@ function isDirectoryChecker(filePath) {
 
 function runCommandOnPath(command, cwd) {
     return new Promise((resolve, reject) => {
-        exec(command, { cwd }, (err, stdout, stderr) => {
+        // Save files (maxBuffer) up to 25MB
+        exec(command, { cwd, maxBuffer: 25000 * 1024 }, (err, stdout, stderr) => {
             if (err) {
                 return reject(err);
             }

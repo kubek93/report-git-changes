@@ -28,7 +28,7 @@ const questions = require('./utils/questions.js');
     const gitReportChangesPath =
         gitReportFolderPath + `/${gitReportFolderName}`;
     const consoleCommand = `git log  --reverse --all --after=${afterDate} --before=${beforeDate} --author="${gitAuthorName}" -p`;
-    console.log('RUN: ', consoleCommand);
+    console.log('Run command: ', consoleCommand);
 
     if (!fs.existsSync(projectFolderPath)) {
         console.error('Passed project folder path not exists.');
@@ -37,6 +37,8 @@ const questions = require('./utils/questions.js');
     }
 
     const listOfProjects = fs.readdirSync(projectFolderPath);
+
+    console.log('listOfProjects', listOfProjects);
 
     if (listOfProjects.length === 0) {
         console.error(
@@ -52,6 +54,8 @@ const questions = require('./utils/questions.js');
     listOfProjects.forEach(async (file) => {
         const fullFilePath = `${projectFolderPath}/${file}`;
 
+        console.log('fullFilePath', fullFilePath);
+
         isDirectoryChecker(fullFilePath)
             .then((isDirectory) => {
                 if (isDirectory) {
@@ -63,13 +67,13 @@ const questions = require('./utils/questions.js');
                             );
                         })
                         .catch((err) => {
-                            // console.error('runCommandOnPath error');
+                            console.error(err);
                             return;
                         });
                 }
             })
             .catch((err) => {
-                // console.error('isDirectoryChecker error');
+                console.error(err);
                 return;
             });
     });
