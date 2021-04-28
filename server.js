@@ -38,8 +38,6 @@ const questions = require('./utils/questions.js');
 
     const listOfProjects = fs.readdirSync(projectFolderPath);
 
-    console.log('listOfProjects', listOfProjects);
-
     if (listOfProjects.length === 0) {
         console.error(
             'There are no any projects inside of the folder. Try to use different project path.'
@@ -54,8 +52,6 @@ const questions = require('./utils/questions.js');
     listOfProjects.forEach(async (file) => {
         const fullFilePath = `${projectFolderPath}/${file}`;
 
-        console.log('fullFilePath', fullFilePath);
-
         isDirectoryChecker(fullFilePath)
             .then((isDirectory) => {
                 if (isDirectory) {
@@ -67,13 +63,13 @@ const questions = require('./utils/questions.js');
                             );
                         })
                         .catch((err) => {
-                            console.error(err);
+                            console.error(consoleCommand, fullFilePath, err);
                             return;
                         });
                 }
             })
             .catch((err) => {
-                console.error(err);
+                console.error(consoleCommand, fullFilePath, err);
                 return;
             });
     });

@@ -67,7 +67,7 @@ function runCommandOnPath(command, cwd) {
             }
 
             if (stderr) {
-                return reject('stderr', stderr);
+                return reject(stderr);
             }
 
             resolve(stdout);
