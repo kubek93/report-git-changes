@@ -1,35 +1,39 @@
+const {
+    runCommandOnPath,
+} = require('./utils.js');
+
 const questions = [
     {
         type: 'date',
         name: 'dateOfReport',
         mask: 'YYYY-MM',
-        message: 'Select month of hours report:',
+        message: 'Select date:',
     },
     {
         type: 'text',
         name: 'gitAuthorName',
-        message: 'What is your git commit author name:',
-        validate: (value) => (value === '' ? `Maybe type something` : true),
-    },
-    {
-        type: 'text',
-        name: 'macOsUserName',
-        message: 'What is the name of you macOS user (check typing "whoami"):',
-        validate: (value) => (value === '' ? `Maybe type something` : true),
+        message: 'Part of search git commit author:',
+        validate: (value) => (value === '' ? `Please type something` : true),
     },
     {
         type: 'text',
         name: 'projectFolderPath',
-        initial: (previousValue => `/Users/${previousValue}/Projects`),
-        message: 'What is your project folder path:',
-        validate: (value) => (value === '' ? `Maybe type something` : true),
+        initial: (async () => {
+            const userName = await runCommandOnPath('whoami');
+            return `/Users/${userName.slice(0, -1)}/Projects`;
+        }),
+        message: 'Projects folder path:',
+        validate: (value) => (value === '' ? `Please type something` : true),
     },
     {
         type: 'text',
         name: 'gitReportFolderPath',
-        initial: ((previousValue, previousValues) => `/Users/${previousValues.macOsUserName}/Documents/report-git-changes`),
-        message: 'Where git report should be saved:',
-        validate: (value) => (value === '' ? `Maybe type something` : true),
+        initial: (async () => {
+            const userName = await runCommandOnPath('whoami');
+            return `/Users/${userName.slice(0, -1)}/Documents/report-git-changes`
+        }),
+        message: 'Raport folder path:',
+        validate: (value) => (value === '' ? `Please type something` : true),
     },
 ];
 

@@ -36,14 +36,22 @@ function returnMonthFolderName(date) {
     return `${year}-${month}-${monthNames[currDate.getMonth()]}`;
 }
 
-function checkIfDirectoryExistsAndCreateIfNeeded(folderPath) {
-    if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath);
+const isDirectoryExist = (folderPath) => {
+    return fs.existsSync(folderPath);
+}
 
-        console.log(`Folder: ${folderPath} has been created.`);
+const createDirectory = (folderPath) => {
+    return fs.mkdirSync(folderPath, { recursive: true }, (err) => {
+        if (err) throw err;
+    });
+}
+
+const checkIfDirectoryExistsAndCreateIfNeeded = async (folderPath) => {
+    const isDirectory = await isDirectoryExist(folderPath);
+
+    if (!isDirectory) {
+        createDirectory(folderPath);
     }
-
-    return true;
 }
 
 function isDirectoryChecker(filePath) {
@@ -85,7 +93,7 @@ function saveFileWithContent(filePath, fileContent = '') {
             if (err) {
                 reject(err);
             } else {
-                console.log(`File: ${filePath} has been saved!`);
+                console.log(`Git changes has been saved! - ${filePath}`);
                 resolve(true);
             }
         });
@@ -96,6 +104,7 @@ module.exports = {
     checkIfDirectoryExistsAndCreateIfNeeded,
     getFirstDayOfMonth,
     getLastDayOfMonth,
+    isDirectoryExist,
     isDirectoryChecker,
     returnMonthFolderName,
     runCommandOnPath,
